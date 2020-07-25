@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme: Theme) =>
 interface Props {
 	avg_sent?: BigInteger
 	sents?: {
-		lyft_id: BigInteger
 		message: string
 		compound: BigInteger
 		scores: string
