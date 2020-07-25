@@ -1,8 +1,17 @@
-from flask import Flask
-import time
+from flask import Flask, request
+from nlp_tools import Sentiment
 
 app = Flask(__name__)
 
-@app.route('/time')
-def get_current_time():
-    return {'time': time.time()}
+
+@app.route('/get_sentiment', methods=['GET', 'POST'])
+def get_sentiment():
+    req = request.get_json()
+    text = req['text']
+    sent = Sentiment(text)
+    return {
+        "text": text,
+        "comp": sent.comp,
+        "pos": sent.pos,
+        "neu": sent.neu,
+        "neg": sent.neg}
